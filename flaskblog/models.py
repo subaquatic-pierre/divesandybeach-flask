@@ -1,6 +1,10 @@
 from datetime import datetime
-from flaskblog import db, login_manager
+from flaskblog import db, login_manager, app
 from flask_login import UserMixin
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer 
+
+# Use Serializer from itsdangerous to import timed token to reset user passwords
+# Be sure to import app from flaskblog to get apps secrets key
 
 # Set login manager decorator
 @login_manager.user_loader
@@ -18,6 +22,22 @@ class User(db.Model, UserMixin): # UserMixin is a class imported from flask_logi
     password = db.Column(db.String(60), nullable=False)
     # Create back reference for user to be linked to posts
     posts = db.relationship('Post', backref='author', lazy=True)
+
+    # Create method for serilizer methods for password reset
+    def get_reset_token(self, expires_sec=1800):
+        s = Serializer(app.config['SECRET_KEY', expires_sec=1800])
+        return s.dumps({'user_id': self.id}).decode('utf-8')
+
+    # Create method to verify the token from reset token
+    @staticmethod # tell python it is a static method and wont expect self argument
+    def verify_reset_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
+
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
