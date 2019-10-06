@@ -3,31 +3,31 @@
 # Intro
 
 Welcome to flask-scubadivedubai. This app is developed using python and flask framework. It is created for scubadivedivedubai.com.
-The bsics of the app it that it is an infomrative website site for Sandy Beach Dive Centre. This is a dive centre based in the UAE.
+The basics of the app it that it is an informative website site for Sandy Beach Dive Centre. This is a dive centre based in the UAE.
 It offers daily diving trips and PADI scuba diving courses.
 
-This app offers a platform fro users to log in and to post blog posts to the site. The current ittereation will only have one user.
+This app offers a platform fro users to log in and to post blog posts to the site. The current iteration will only have one user.
 This user will be the admin of the site who will update all posts and load new pages into the site. 
 
 The site has a few static pages such as the landing page, about us page and contact page. All other pages are dynamic pages which are
 rendered through the flask framework. The database is based on SQLLite and will be moved over to Prostgress SQL when needed.
 
-Each compenent part is broken down into a Blueprint to alow for more modular and extensibility
+Each component part is broken down into a Blueprint to alow for more modular and extensibility
 
-### Current functionaility includes:
+### Current functionality includes:
 - User Register
 - Log in / out
 - Create PADI courses pages, update and delete
-- Create Diive Sites, update and delete
+- Create Dive Sites, update and delete
 - Upload Blog post, update and delete
-- Contact form susbmission
-- Dive Course request form susbmission
-- Fun diving request susbmission
+- Contact form submission
+- Dive Course request form submission
+- Fun diving request submission
 
 ### Components
 The component are made into Blueprints to improve molar design and help scaling when needed.
-- Main : main functionality including serving statis pages
-- Posts : All functionily regarding posts
+- Main : main functionality including serving static pages
+- Posts : All functionality regarding posts
 - Users : all user functionality
 - Errors : All error handling
 
@@ -56,9 +56,9 @@ The component are made into Blueprints to improve molar design and help scaling 
 - [Jinja 2](https://jinja.palletsprojects.com/en/2.10.x/)
 
 
-# Architectual Pattern
+# Architectural Pattern
 
-This appp is developed with the **MVC** arcitechitual design pattern. The details of each componenet is borken down below.
+This app is developed with the **MVC** architectural design pattern. The details of each component is broken down below.
 
 ## Model
 
@@ -77,8 +77,8 @@ This sets login decorator on all paths that need user login authentication.
 #### User Model
 Model used to store user data. A back reference is created to reference all posts by that user
 - UserMixin is imported from flask_login to extend use with login_manager. 
-- Methods definied with user class to allow password reset functionality
-    - Serializer is imported from itsdangerous to serilaize a token to user email
+- Methods defined with user class to allow password reset functionality
+    - Serializer is imported from itsdangerous to serialize a token to user email
 
 #### Post Model
 Model for posts
@@ -86,36 +86,36 @@ Model for posts
 ## Controller
 
 Because of the apps modular design pattern, the config.py folder contains a create_app function. This function returns
-flask as a configured app. This app is the assigned to the main app vairable and main is then called to run in the run.py
+flask as a configured app. This app is the assigned to the main app variable and main is then called to run in the run.py
 within the flaskblog route directory.
 
 ### Blueprint
-This module is imported from flask. It is used to seperate all compents of the app into their own blueprint.
-Each blueprint is import in the main __init.py to be used in the whole app
+This module is imported from flask. It is used to separate all components of the app into their own blueprint.
+Each blueprint is import in the main `__init__.py` to be used in the whole app
 
 ### Routes
-- Some routes are decorated with login requeried to prevent anauthorized user access
-- Forms and users are validated and authenticated beofre submission
+- Some routes are decorated with login required to prevent unauthorized user access
+- Forms and users are validated and authenticated before submission
 - SQL Alchemy used to query and return from the Database
 - Flash is used to send flash messages to users
-- BCrypt used to encryppt password from forms and compared to hashed passwords in DB
-- Render Template is used to return html templates after logic has been procceessed
+- BCrypt used to encrypt password from forms and compared to hashed passwords in DB
+- Render Template is used to return html templates after logic has been processed
 
 ### Users
 Users are authenticated using login_manager, current_user method
 
 ### Forms
-FlaskForms are used to create classes of forms. Thos classes are then passed into temaplates to be rendered as html
+FlaskForms are used to create classes of forms, those classes are then passed into templates to be rendered as html
 
 - FlaskForm class imported from flask_wtf
     - DataRequired and Fields are imported from WTForms
     - All uploads are done through FlaskForms
-    - Form data is validated using validate_ion_sumit method from FlaskForm class
+    - Form data is validated using `validate_on_submit` method from FlaskForm class
 
-validate_username and email are functions defined within users.forms RegistrationForm to be used
+`validate_username` and email are functions defined within users.forms RegistrationForm to be used
 to validate users when queries are made to the database to check if username or email is taken already
 
-validate_email is defined in RequestResetForm to check if email exists to reset the requested password
+`validate_email` is defined in RequestResetForm to check if email exists to reset the requested password
 
 ### Utils
 
@@ -129,11 +129,11 @@ validate_email is defined in RequestResetForm to check if email exists to reset 
 
 ### Templates
 Templates are rendered using jinja 2. All data is returned from routes within the controller. Data passed
-onto the templates is the rendered into html using vairables and looks. layout.html is used to extend the layout
+onto the templates is the rendered into html using variables and looks. layout.html is used to extend the layout
 of each page to prevent repeating code.
 
 ### CSS
-All custome styles are writen in SCSS. Ruby SASS is then used to compile SCSS into CSS. Bootstrap is imported with 
+All customer styles are written in SCSS. Ruby SASS is then used to compile SCSS into CSS. Bootstrap is imported with 
 CDN to improve site performance. 
 
 ### Javascript
@@ -146,8 +146,7 @@ Profile pictures are stored within this directory
 
 _________________________________________________________________________________________________________________________
 
-### Created by:
-#### Pierre du Toit
+#### Created by: Pierre du Toit 
 
 
 
