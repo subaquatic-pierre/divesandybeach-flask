@@ -72,15 +72,15 @@ All database queries and submissions are made with SQL Alchemy.
 #### Login Manager 
 This sets login decorator on all paths that need user login authentication. 
 
-#### Model Classes
+### Model Classes
 
-##### User Model
+#### User Model
 Model used to store user data. A back reference is created to reference all posts by that user
 - UserMixin is imported from flask_login to extend use with login_manager. 
 - Methods defined with user class to allow password reset functionality
     - Serializer is imported from itsdangerous to serialize a token to user email
 
-##### Post Model
+#### Post Model
 Model for posts
 
 ## Controller
