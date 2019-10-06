@@ -1,6 +1,6 @@
 # Welcome to flask-scubadivedubai
 
-## Intro
+# Intro
 
 Welcome to flask-scubadivedubai. This app is developed using python and flask framework. It is created for scubadivedivedubai.com.
 The bsics of the app it that it is an infomrative website site for Sandy Beach Dive Centre. This is a dive centre based in the UAE.
@@ -12,6 +12,8 @@ This user will be the admin of the site who will update all posts and load new p
 The site has a few static pages such as the landing page, about us page and contact page. All other pages are dynamic pages which are
 rendered through the flask framework. The database is based on SQLLite and will be moved over to Prostgress SQL when needed.
 
+Each compenent part is broken down into a Blueprint to alow for more modular and extensibility
+
 ### Current functionaility includes:
 - User Register
 - Log in / out
@@ -22,7 +24,7 @@ rendered through the flask framework. The database is based on SQLLite and will 
 - Dive Course request form susbmission
 - Fun diving request susbmission
 
-## Technical Overview
+# Technical Overview
 
 ### Languages
 - Python : Server side controller
@@ -31,12 +33,19 @@ rendered through the flask framework. The database is based on SQLLite and will 
 - HTML : Basic webpage layout
 
 ### Frameworks
-- Flask : Server side framework
-- Bootsrap : Web page styling
-- JQuery : Client side UX
+- [Flask](http://flask.palletsprojects.com/en/1.1.x/) : Server side framework
+- [Bootsrap 4](https://getbootstrap.com/docs/4.3/getting-started/introduction/) : Web page styling
+- [JQuery](https://api.jquery.com/) : Client side UX
 
-### Flask modules
-- 
+### Flask Extensions
+- [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
+- [Flask-Bcrypt](https://flask-bcrypt.readthedocs.io/en/latest/)
+- [Flask-Login](https://flask-login.readthedocs.io/en/latest/)
+- [Flask-Mail](https://pythonhosted.org/Flask-Mail/)
+- [Its Dangerous](https://pythonhosted.org/itsdangerous/)
+- [WTForms](https://wtforms.readthedocs.io/en/stable/)
+- [Flask-WTF](https://flask-wtf.readthedocs.io/en/stable/)
+- [Pillow](https://pillow.readthedocs.io/en/stable/)
 
 
 # Architectual Pattern
