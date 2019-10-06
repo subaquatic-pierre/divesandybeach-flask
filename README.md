@@ -24,6 +24,13 @@ Each compenent part is broken down into a Blueprint to alow for more modular and
 - Dive Course request form susbmission
 - Fun diving request susbmission
 
+### Components
+The component are made into Blueprints to improve molar design and help scaling when needed.
+- Main : main functionality including serving statis pages
+- Posts : All functionily regarding posts
+- Users : all user functionality
+- Errors : All error handling
+
 # Technical Overview
 
 ### Languages
@@ -46,6 +53,7 @@ Each compenent part is broken down into a Blueprint to alow for more modular and
 - [WTForms](https://wtforms.readthedocs.io/en/stable/)
 - [Flask-WTF](https://flask-wtf.readthedocs.io/en/stable/)
 - [Pillow](https://pillow.readthedocs.io/en/stable/)
+- [Jinja 2](https://jinja.palletsprojects.com/en/2.10.x/)
 
 
 # Architectual Pattern
@@ -54,4 +62,43 @@ This appp is developed with the **MVC** arcitechitual design pattern. The detail
 
 ## Model
 
-### SQLLite database
+### SQL Lite
+SQL Lite is used as the current database for the application. It is not a large enough amount of data to warrant the use of
+a dedicated SQL Server.
+
+### SQL ALchemy
+All database queries and submissions are made with SQL Alchemy. 
+
+### Login Manager 
+This sets login decorator on all paths that need user login authentication. 
+
+#### User Model
+Model used to store user data. A back reference is created to reference all posts by that user
+- UserMixin is imported from flask_login to extend use with login_manager. 
+- Methods definied with user class to allow password reset functionality
+    - Serializer is imported from itsdangerous to serilaize a token to user email
+
+#### Post Model
+Model for posts
+
+## Controller
+
+Because of the apps modular design pattern, the config.py folder contains a create_app function. This function returns
+flask as a configured app. This app is the assigned to the main app vairable and main is then called to run in the run.py
+within the flaskblog route directory.
+
+### Blueprint
+This module is imported from flask. It is used to seperate all compents of the app into their own blueprint.
+Each blueprint is import in the main __init.py to be used in the whole app
+
+### Routes
+- Some routes are decorated with login requeried to prevent anauthorized user access
+- SQL Alchemy used to query and return from the Database
+- Render Template is used to return html templates after logic has been procceessed
+- FlaskForm class imported from flask_wtf
+    - DataRequired and Fields are imported from WTForms
+    - Form data is validated using validate_ion_sumit method from FlaskForm class
+-
+
+
+
