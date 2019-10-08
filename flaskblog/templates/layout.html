@@ -11,80 +11,156 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
 
+        <!-- Aminamte CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css')}}">
+
         <title>
             {% if title %}
-                The Best - {{ title }}
+                {{ title }} - Sandy Beach Dive Centre
             {% else %}
-                The Best - Blog
+                Sandy Beach Dive Centre
             {% endif %}
         </title>
-    </head>
-
-    <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-            <div class="container">
-            <a class="navbar-brand mr-4" href="/">Amazing</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarToggle">
-                <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
-                <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
-                </div>
-                <!-- Navbar Right Side -->
-                <div class="navbar-nav">
-                {% if current_user.is_authenticated %}
-                    <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>    
-                    <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
-                    <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
-                {% else %}
-                    <a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a>
-                    <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
-                {% endif %}
-                </div>
-            </div>
-            </div>
-        </nav>
-    </header>
+    </head>      
 
     <body>
-        <main role="main" class="container">
-            <div class="row">
-                <div class="col-md-8">
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                            <div class="alert alert-{{ category }}">{{ message }}</div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                {% block main %}{% endblock %}
-                </div>
-                <div class="col-md-4">
-                <div class="content-section">
-                    <h3>Our Sidebar</h3>
-                    <p class='text-muted'>You can put any information here you'd like.
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-light">Latest Posts</li>
-                        <li class="list-group-item list-group-item-light">Announcements</li>
-                        <li class="list-group-item list-group-item-light">Calendars</li>
-                        <li class="list-group-item list-group-item-light">etc</li>
+
+        <header class="site-header">
+            <nav class="navbar navbar-expand-xl bg-dark navbar-dark fixed-top">
+                <div class="container-fluid">
+                        <a class="navbar-brand align-content-start" href="{{ url_for('main.home') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Sandy Beach Dive Centre Logo"></a>  
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"><span class="custom-toggler-icon ml-auto"><i class="fas fa-bars"></i></span></button>  
+                    <div class="collapse navbar-collapse" id="navbarToggle">
+                    <ul class="navbar-nav ml-auto text-light">
+                        <li class="nav-item dropdown">
+                            <a data-toggle="dropdown" id="target-dropdown" class="nav-link dropdown-toggle" href="#">Dive With Us</a>
+                            <div class="dropdown-menu bg-dark" aria-labelledby="target-dropdown">                  
+                                <a class="nav-link dropdown-item" href="#">Boat Diving</a>
+                                <a class="nav-link dropdown-item" href="#">Shore Diving</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a data-toggle="dropdown" id="target-dropdown-padi" class="nav-link dropdown-toggle" href="#">PADI Courses</a>
+                            <div class="dropdown-menu bg-dark" aria-labelledby="target-dropdown-padi">                  
+                                <a class="nav-link dropdown-item" href="#">Entry Level</a>
+                                <a class="nav-link dropdown-item" href="#">Advanced Level</a>
+                                <a class="nav-link dropdown-item" href="#">Pro Level</a>
+                                <a class="nav-link dropdown-item" href="#">Specialties</a>
+                                <a class="nav-link dropdown-item" href="#">Technical</a>
+                            </div>                        
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Dive Sites</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('posts.blog') }}">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.about') }}">About Us</a>
+                        </li>                   
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.contact') }}">Contact Us</a>
+                        </li>
+                        {% if current_user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
+                            </li>
+                        {% endif %}    
                     </ul>
-                    </p>
+
                 </div>
-                </div>
-            </div>
+                
+            </nav>
+        </header>
+        
+        <section class="message container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </section>
+        <main role="main">            
+                {% block main %}{% endblock %}
         </main>
 
-    <footer>
+        <footer>
+            <div class="row justify-content-center footer-row">
+            <div class="col-md-10">
+            <div class="row py-3 text-center justify-content-center">
+                <div class="col-md-6 col-xl-3 my-3">
+                    <img src="{{ url_for('static', filename='img/SBDC Logo and text Hotel all white.png') }}" class="bottom-logo" alt="">
+                </div>  
+                
+                <div class="col-md-6 col-xl-3 my-3">
+                    <p>Connect With Us</p>
+                    <hr>
+                    <ul class="list-unstyled connect">
+                        <li class="list-group-item"><i class="fas fa-phone"></i>+971 50 206 4050</li>
+                        <li class="list-group-item"><i class="fas fa-inbox"></i> info@divesandybeach.com</li>
+                        <li class="list-group-item social"><i class="fab fa-facebook-square"></i><i class="fab fa-instagram"></i><i class="fab fa-youtube"></i></li>
+                    </ul>
+                    
+                </div>
+                
+                
+                <div class="col-md-6 col-xl-3 footer-links my-3">
+                    <p>Site Links</p>
+                    <hr>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="{{ url_for('main.terms') }}">Terms & Conditions</a></li>
+                        <li class="list-group-item"><a href="{{ url_for('main.policy') }}">Privacy Policy</a></li>
+                        <li class="list-group-item"><a href="{{ url_for('main.site_map') }}">Site Map</a></li>
+                        <li class="list-group-item"><a href="{{ url_for('main.contact') }}">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6 col-xl-3 footer-links my-3">
+                    <p>Usefull Links</p>
+                    <hr>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="#">PADI.com</a></li>
+                        <li class="list-group-item"><a href="#">Tide Forcast</a></li>
+                        <li class="list-group-item"><a href="#">Sandy Beach Hotel & Resort</a></li>
+                    </ul>
+                </div>
+                
+                
+            </div> <!-- End Row -->  
+            <hr>
+            <p class="text-center">Sandy Beach Dive Centre &copy; 2019 </p>
+            </div> <!-- End col 10 --> 
+            </div>
+        </footer>
 
-    </footer>
+        <!-- Include javascript -->
+        <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap-4.3.1.js') }}"></script>
 
-    <!-- Include javascript -->
-    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap-4.3.1.js') }}"></script>
 
     </body>
 </html>
+
+<!-- <div class="col-md-4">
+        <div class="content-section">
+            <h3>Our Sidebar</h3>
+            <p class='text-muted'>You can put any information here you'd like.
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+            </ul>
+            </p>
+        </div>
+        </div> -->

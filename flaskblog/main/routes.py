@@ -8,16 +8,35 @@ main = Blueprint('main', __name__)
 # Show home page template
 @main.route('/')
 @main.route('/home')
-def home():
-    # Set page for SQLAlchemy pagination meythod from request.args
-    page = request.args.get('page', 1, type=int) # Use int type to prevent anyone submitting anything other than integer
-    # Get posts from db using SQLAlchemy, use paginate method to get only few posts
-    # Check sort results from SQLAlchemy **********************************************
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5) # user order_by to order the posts by newest post at the top
-    return render_template('index.html', posts=posts)
+def home():    
+    return render_template('main/index.html')
 
 
 # Show about page template
 @main.route('/about')
 def about():
-    return render_template('about.html', title='About')
+    return render_template('main/about.html', title='About')
+
+
+# Show about contact template
+@main.route('/contact')
+def contact():
+    return render_template('main/contact.html', title='Contact Us')
+
+
+# Show about privacy policy template
+@main.route('/policy')
+def policy():
+    return render_template('main/policy.html', title='Privacy Policy')
+
+
+# Show about terms and condtions template
+@main.route('/terms')
+def terms():
+    return render_template('main/terms.html', title='Terms and Conditions')
+
+
+# Show about site map template
+@main.route('/site_map')
+def site_map():
+    return render_template('main/site_map.html', title='Site Map')

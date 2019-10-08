@@ -33,7 +33,7 @@ def register():
         return redirect(url_for('users.login'))
 
     # If method is GET return register form template
-    return render_template('register.html', title='Register', form=form)
+    return render_template('users/register.html', title='Register', form=form)
 
 
 # Show the login page or log the user into their account if POST request
@@ -66,7 +66,7 @@ def login():
             flash('Login unsuccessful. Please check email and password', 'danger')
 
     # Render login form if request is GET 
-    return render_template('login.html', title='Login', form=form)
+    return render_template('users/login.html', title='Login', form=form)
 
 
 # Log the user out of their acount
@@ -113,7 +113,7 @@ def account():
 
     # Get user profile pic from the db
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    return render_template('account.html', title='Account', 
+    return render_template('users/account.html', title='Account', 
                             image_file=image_file, form=form)
 
 
@@ -134,7 +134,7 @@ def user_posts(username):
     order_by(Post.date_posted.desc()) \
     .paginate(page=page, per_page=5) # user order_by to order the posts by newest post at the top
 
-    return render_template('user_posts.html', posts=posts, user=user)
+    return render_template('users/user_posts.html', posts=posts, user=user)
 
 
 # Request reset password route
@@ -162,7 +162,7 @@ def reset_request():
     
 
     # Get request show reset password token form
-    return render_template('reset_request.html', title='Reset Password', form=form)
+    return render_template('users/reset_request.html', title='Reset Password', form=form)
 
 
 # Get request form url sent to user email with enrytped timed token sent to their email
@@ -197,5 +197,5 @@ def reset_token(token):
         flash(f'Your account has been updated! You are now able to log in.', 'success')
         return redirect(url_for('users.login'))
     
-    return render_template('reset_token.html', title='Reset Password', form=form)
+    return render_template('users/reset_token.html', title='Reset Password', form=form)
     

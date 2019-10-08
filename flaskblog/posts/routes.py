@@ -6,6 +6,17 @@ from flaskblog.posts.forms import PostForm
 
 posts = Blueprint('posts', __name__)
 
+# Display main blog page with alll posts
+@posts.route('/blog')
+def blog():
+    # Set page for SQLAlchemy pagination meythod from request.args
+    page = request.args.get('page', 1, type=int) # Use int type to prevent anyone submitting anything other than integer
+    # Get posts from db using SQLAlchemy, use paginate method to get only few posts
+    # Check sort results from SQLAlchemy **********************************************
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5) # user order_by to order the posts by newest post at the top
+    return render_template('posts/blog.html', posts=posts)
+
+
 # Display new post form or create new post from POST request
 @posts.route('/post/new', methods=['GET', 'POST'])
 @login_required # Imported from flask login module downloaded
@@ -25,7 +36,7 @@ def new_post():
         return redirect(url_for('main.home'))
 
     
-    return render_template('create_update_post.html', title='New Post', form=form, legend='Create Post')
+    return render_template('posts/create_update_post.html', title='New Post', form=form, legend='Create Post')
 
 
 # Display page for individual post
@@ -34,7 +45,7 @@ def post(post_id):
     # Get the post from the db from the post id passed into the url args
     post = Post.query.get_or_404(post_id) # Get the post with this id, if not found return with 404 page not found error, SQLAlchemy methods
 
-    return render_template('post.html', title=post.title, post=post)
+    return render_template('posts/post.html', title=post.title, post=post)
 
 
 # Display page for individual post
@@ -73,7 +84,7 @@ def update_post(post_id):
         form.content.data = post.content
 
     # Render update form template with populated form
-    return render_template('create_update_post.html', title='Update Post', 
+    return render_template('posts/create_update_post.html', title='Update Post', 
                             form=form, legend='Update Post')
 
 
