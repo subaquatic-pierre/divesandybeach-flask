@@ -1,20 +1,20 @@
 from flask_wtf.file import FileField, FileAllowed
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
-from flaskblog.models import User
+from flaskblog.users.models import User
 
 # Use WTForms to make a form which can be rendered to html in the template form used on the register route
 class RegistrationForm(FlaskForm):
     # StingField class used from wtforms module downlaoded
     # Create fields with WTForm fields
     username = StringField('Username', 
-                            validators=[DataRequired(), Length(min=2, max=20)]) # Use wtforms.validator module to validate inputs from the user
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password= PasswordField('Password', validators=[DataRequired()])
+                            validators=[InputRequired(), Length(min=2, max=20)]) # Use wtforms.validator module to validate inputs from the user
+    email = StringField('Email', validators=[InputRequired(), Email()])
+    password= PasswordField('Password', validators=[InputRequired()])
     confirm_password= PasswordField('Confirm Password', 
-                                validators=[DataRequired(), EqualTo('password')])
+                                validators=[InputRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
 
     # Username validator function
@@ -38,8 +38,8 @@ class RegistrationForm(FlaskForm):
 class LoginForm(FlaskForm):
     # StingField class used from wtforms module downlaoded
     # Create fields with WTForm fields
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password= PasswordField('Password', validators=[DataRequired()])
+    email = StringField('Email', validators=[InputRequired(), Email()])
+    password= PasswordField('Password', validators=[InputRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
@@ -48,8 +48,8 @@ class LoginForm(FlaskForm):
 class UpdateAccountForm(FlaskForm):
     # StingField class used from wtforms module downlaoded
     username = StringField('Username', 
-                            validators=[DataRequired(), Length(min=2, max=20)])
-    email = StringField('Email', validators=[DataRequired(), Email()])
+                            validators=[InputRequired(), Length(min=2, max=20)])
+    email = StringField('Email', validators=[InputRequired(), Email()])
     picture = FileField('Update profile picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
 
@@ -77,7 +77,7 @@ class UpdateAccountForm(FlaskForm):
 # Create user reset class to be used as form to request reset user details
 class RequestResetForm(FlaskForm):
     # Create fields with WTForm fields
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[InputRequired(), Email()])
     submit = SubmitField('Request Password Reset')
 
     # Email validation check, if no user exits in the database let the user know they have to create an account first
@@ -92,7 +92,7 @@ class RequestResetForm(FlaskForm):
 # Reset password class for reset password form
 class ResetPasswordForm(FlaskForm):
     # Create fields with WTForm fields
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[InputRequired()])
     confirm_password= PasswordField('Confirm Password', 
-                                validators=[DataRequired(), EqualTo('password')])
+                                validators=[InputRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')

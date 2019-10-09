@@ -2,8 +2,9 @@ from flask import Blueprint, redirect, url_for, flash, render_template, abort, r
 from flask_login import current_user, login_user, logout_user, login_required
 from flaskblog import db, bcrypt
 from flaskblog.users.forms import RegistrationForm, LoginForm, UpdateAccountForm, ResetPasswordForm, RequestResetForm
-from flaskblog.users.utils import save_picture, send_reset_email
-from flaskblog.models import Post, User
+from flaskblog.users.utils import save_profile_picture, send_reset_email
+from flaskblog.users.models import User
+from flaskblog.posts.models import Post
 
 users = Blueprint('users', __name__)
 
@@ -41,7 +42,7 @@ def register():
 def login():
     # Check if user is already logged in with current_user variable from flask login module downloaded
     if current_user.is_authenticated:
-        return redirect('home')
+        return redirect(url_for('users.account'))
     
     # Get data from login form
     form = LoginForm()
@@ -74,7 +75,7 @@ def login():
 def logout():
     # Use logout function from flask_login module downloaded
     logout_user()
-    return redirect('home')
+    return redirect(url_for('main.home'))
 
 
 # Account page route to view the account, any POST requests will update user profile data
@@ -84,7 +85,7 @@ def account():
     # Create instance on UpdateAccountForm imported from forms module
     form = UpdateAccountForm()
 
-    # Check if POST route and form is valid
+    # Check if POST route and form is valid update profile
     if form.validate_on_submit():
         # Check if profile picture exists, use save_picture function created to pass in information and save file so file system, get new picture filename back
         if form.picture.data:
@@ -92,7 +93,7 @@ def account():
             # CREATE LOGIC TO REMOVE OLD PROFIILE PICTURE WHEN NEW ONE IS UPLOADED
             # ************************************
 
-            picture_file = save_picture(form.picture.data) # Call save_picture function which returns new picture file name
+            picture_file = save_profile_picture(form.picture.data) # Call save_picture function which returns new picture file name
             current_user.image_file = picture_file
 
         # Change current data to submitted data from form, using flask_login module, current_user class
@@ -112,7 +113,7 @@ def account():
         form.email.data = current_user.email        
 
     # Get user profile pic from the db
-    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    image_file = url_for('static', filename='uploads/profile_pics/' + current_user.image_file)
     return render_template('users/account.html', title='Account', 
                             image_file=image_file, form=form)
 

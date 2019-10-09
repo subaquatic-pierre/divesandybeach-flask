@@ -1,13 +1,12 @@
 from flask import Blueprint
-from flaskblog.models import User, Post
 from flask import request, render_template
+from flaskblog import db
 
 main = Blueprint('main', __name__)
 
 
 # Show home page template
 @main.route('/')
-@main.route('/home')
 def home():    
     return render_template('main/index.html')
 

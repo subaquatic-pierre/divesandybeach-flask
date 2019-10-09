@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+    <section id="sites-heading">
+        <div class="jumbrotron-fluid">
+            <div class="container">
+                <h1 class="display-3 mt-4">Fujairah Dive Sites</h1>
+                <hr>
+                <p class="lead">Check out all our dive sites in Fujairah</p>
+            </div>
+            
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            {% for site in sites %}            
+                    <div class="col-md-4">
+                        <div class="card mb-5">
+                            <a href="{{ url_for('sites.dive_site', slug=site.slug) }}"><img src="{{ url_for('static', filename='uploads/maps/') + site.map_image }}" class="card-img-top cd" alt="..."></a>
+                            <div class="card-body">
+                                <a href="{{ url_for('sites.dive_site', slug=site.slug) }}"><h5 class="card-title text-center">{{ site.sitename }}</h5></a>
+                                <ul class="list-group list-group-flush my-4">
+                                    <li class="list-group-item">Level: {{ site.level }}</li>
+                                    <li class="list-group-item">Depth: {{ site.depth }}</li>
+                                    <li class="list-group-item">Distance: {{ site.distance }} min</li>
+                                    <li class="list-group-item">Dive Time: {{ site.dive_time }}</li>
+                                </ul>
+                                <a href="{{ url_for('sites.dive_site', slug=site.slug) }}" class="btn btn-primary btn-block">More Info</a>
+                            </div>
+                        </div>
+                    </div>                
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

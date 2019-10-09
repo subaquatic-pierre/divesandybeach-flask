@@ -1,0 +1,139 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+    <div class="container mb-5">
+      
+        <div class="content-section">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">{{ legend }}</legend>   
+                    <!-- Site name -->
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                {{ form.sitename.label(class='form-control-label') }}
+                                {% if form.sitename.errors %}
+                                    {{ form.sitename(class='form-control is-invalid') }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.sitename.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.sitename(class='form-control') }}
+                                {% endif %}
+                            </div>
+                            <!-- Level required -->
+                            <div class="form-group">
+                                {{ form.level.label(class='form-control-label') }}
+                                {% if form.level.errors %}
+                                    {{ form.level(class='form-control is-invalid') }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.level.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.level(class='form-control') }}
+                                {% endif %}
+                            </div>            
+                            <!-- Depth -->
+                            <div class="form-group">
+                                {{ form.depth.label(class='form-control-label') }}
+                                {% if form.depth.errors %}
+                                    {{ form.depth(class='form-control is-invalid') }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.depth.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.depth(class='form-control') }}
+                                {% endif %}
+                            </div>            
+                            <!-- Dive Time -->
+                            <div class="form-group">
+                                {{ form.dive_time.label(class='form-control-label') }}
+                                {% if form.dive_time.errors %}
+                                    {{ form.dive_time(class='form-control is-invalid') }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.dive_time.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.dive_time(class='form-control') }}
+                                {% endif %}
+                            </div>     
+                            <!-- Distance from centre -->
+                            <div class="form-group">
+                                {{ form.distance.label(class='form-control-label') }}
+                                {% if form.distance.errors %}
+                                    {{ form.distance(class='form-control is-invalid') }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.distance.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.distance(class='form-control') }}
+                                {% endif %}
+                            </div>  
+                        </div>                                  
+                        <div class="col-md-6">
+                            <!-- Marine Life -->
+                            <div class="form-group">
+                                {{ form.marine_life.label(class='form-control-label') }}
+                                {% if form.marine_life.errors %}
+                                    {{ form.marine_life(class='form-control is-invalid', rows='10') }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.marine_life.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.marine_life(class='form-control', rows='10') }}
+                                {% endif %}
+                            </div> 
+                            <!-- Site map file -->
+                            <div class="form-group">
+                                {{ form.map_image.label() }}  
+                                {{ form.map_image(class='form-control-file') }}
+                                {% if form.map_image.errors %}
+                                    {% for error in form.map_image.errors %}
+                                        <span class="text-danger">{{ error }}</span><br>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>   
+                        </div>    
+                    </div>     
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <!-- Site Description -->
+                            <div class="form-group">
+                                {{ form.description.label(class='form-control-label') }}
+                                {% if form.description.errors %}
+                                    {{ form.description(class='form-control is-invalid', rows='20') }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.description.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.description(class='form-control', rows='20') }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>                            
+                              
+                </fieldset>
+                <div class="form-group">
+                    {{ form.submit(class='btn btn-outline-info') }}
+                </div>        
+            </form>
+        </div>   
+        
+    </div>
+    
+{% endblock %}

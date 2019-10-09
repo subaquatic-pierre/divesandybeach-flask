@@ -74,10 +74,6 @@ p {
   font-family: montserrat, sans-serif;
 }
 
-.top-spacer {
-  margin-top: 5rem;
-}
-
 .btn {
   cursor: pointer;
   text-transform: uppercase;
@@ -124,8 +120,13 @@ p {
   font-size: 1.2rem;
 }
 
-.card-img {
+.card-img-top {
   border-radius: 0 !important;
+}
+
+.cd {
+  height: 300px;
+  object-fit: cover;
 }
 
 /*====================== NAVBAR =============== */
@@ -172,32 +173,6 @@ p {
 
 #divesitecta .dark-overlay {
   background-color: rgba(0, 0, 0, 0.1);
-}
-
-/*====================== FEATURED COURSE SECTION =============== */
-.card {
-  border: none;
-}
-
-.card img {
-  border-radius: 0;
-}
-
-#featured-courses .card-img img:hover {
-  transform: scale(1.3);
-}
-
-#featured-courses .card-title {
-  text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.8);
-  font-size: 3rem;
-}
-
-#featured-courses .card-img-overlay {
-  padding: 0;
-}
-
-#featured-courses .card-title {
-  padding: 0;
 }
 
 /*====================== PARTNERS SECTION =============== */
@@ -302,6 +277,7 @@ p {
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .article-title {

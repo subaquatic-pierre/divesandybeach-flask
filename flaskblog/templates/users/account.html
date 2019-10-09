@@ -1,9 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block main %}
-    <div class="top-spacer">&nbsp;</div>
-    <div class="container mb-5">
-         
+    <div class="container mb-5">         
         <div class="content-section">
             <!-- Top user profile pic and name -->
             <div class="media">
@@ -61,7 +59,10 @@
                 </div>
             </form>
             <div>
-                <a class="btn btn-primary" href="{{ url_for('posts.new_post') }}">New Post</a>
+                <h5>Create a New:</h5>
+                <a class="btn btn-outline-success" href="{{ url_for('posts.new_post') }}">Post</a>
+                <a class="btn btn-outline-success" href="{{ url_for('sites.new_site') }}">Dive Site</a>
+                <!-- <a class="btn btn-outline-success" href="{{ url_for('posts.new_post') }}">Course</a> -->
             </div>
         </div>
     </div>

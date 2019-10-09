@@ -6,7 +6,7 @@ from flaskblog import mail
 
 
 # New function to update user profile picture when user uploads new profile picture
-def save_picture(form_picture):
+def save_profile_picture(form_picture):
     # Change filename to random hex by using secrets module
     random_hex = secrets.token_hex(8)
     # Get file extension with os module using split ext function, returns 2 values: filename and extentsion, use _ to throw away filename variable
@@ -14,7 +14,7 @@ def save_picture(form_picture):
     # Make new filename for picture
     picture_fn = random_hex + f_ext    
     # Create absolue path from os path.join method, root_path gives full path until package directory
-    picture_path = os.path.join(current_app.root_path, 'static/profile_pics', picture_fn)
+    picture_path = os.path.join(current_app.root_path, 'static/uploads/profile_pics', picture_fn)
 
     # Use Pillow module to resize image before saving it
     output_size = (125, 125) # Create tuple for resize dimernsions
