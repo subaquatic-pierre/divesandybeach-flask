@@ -1,4 +1,4 @@
-
+import os
 
 class Config:
     # Mail settings to send emails 
