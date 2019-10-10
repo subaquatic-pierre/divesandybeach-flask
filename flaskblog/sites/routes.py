@@ -20,7 +20,7 @@ def new_site():
     form = SiteForm()
 
     if form.validate_on_submit():
-        # Save the map and return url to file 
+           
 
         slug = build_slug(form.sitename.data)
         site = Site(sitename=form.sitename.data, level=form.level.data, 
@@ -28,14 +28,13 @@ def new_site():
                     distance=form.distance.data, marine_life=form.marine_life.data, 
                     description=form.description.data, slug=slug)
 
-        db.session.add(site)
-        db.session.commit()
-
+        # Check if new map was uploaded, update new image, save the map and return url to file    
         if form.map_image.data:
-            site = Site.query.filter_by(sitename=form.sitename.data)
             map_fn = save_map(form.sitename.data, form.map_image.data)
             site.map_image = map_fn
-            db.session.commit()
+
+        db.session.add(site)
+        db.session.commit()
 
         return redirect(url_for('sites.all_sites'))
 
