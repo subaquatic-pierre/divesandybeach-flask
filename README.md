@@ -1,8 +1,8 @@
-# Welcome to flask-scubadivedubai
+# Welcome to scubadivedubai-flask
 
 # Intro
 
-Welcome to flask-scubadivedubai. This app is developed using python and flask framework. It is created for scubadivedivedubai.com.
+Welcome to scubadivedubai-flask. This app is developed using python and flask framework. It is created for scubadivedivedubai.com.
 The basics of the app it that it is an informative website site for Sandy Beach Dive Centre. This is a dive centre based in the UAE.
 It offers daily diving trips and PADI scuba diving courses.
 
