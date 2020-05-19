@@ -10,9 +10,13 @@ This app offers a platform fro users to log in and to post blog posts to the sit
 This user will be the admin of the site who will update all posts and load new pages into the site.
 
 The site has a few static pages such as the landing page, about us page and contact page. All other pages are dynamic pages which are
-rendered through the flask framework. The database is based on SQLLite and will be moved over to Prostgress SQL when needed.
+rendered through the flask framework. The database is based on SQLLite and will be moved over to ProstgreSQL when needed.
 
 Each component part is broken down into a Blueprint to alow for more modular and extensibility
+
+#### Website
+
+[scubadivedubai-flask](https://scubadivedubaiflask.herokuapp.com/)
 
 #### Dummy User account
 
