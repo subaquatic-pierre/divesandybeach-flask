@@ -1,13 +1,10 @@
-# Welcome to scubadivedubai-flask
+# Welcome to divesandybeach-flask
 
 # Intro
 
-Welcome to scubadivedubai-flask. This app is developed using python and flask framework. It is created for scubadivedivedubai.com.
-The basics of the app it that it is an informative website site for Sandy Beach Dive Centre. This is a dive centre based in the UAE.
-It offers daily diving trips and PADI scuba diving courses.
+Welcome to divesandybeach-flask. This app is developed using python and flask framework. The basics of the app it that it is an informative website site for Sandy Beach Dive Centre. This is a dive centre based in the UAE. It offers daily diving trips and PADI scuba diving courses.
 
-This app offers a platform fro users to log in and to post blog posts to the site. The current iteration will only have one user.
-This user will be the admin of the site who will update all posts and load new pages into the site.
+This app offers a platform fro users to log in and to post blog posts to the site. The current iteration will only have one user. This user will be the admin of the site who will update all posts and load new pages into the site.
 
 The site has a few static pages such as the landing page, about us page and contact page. All other pages are dynamic pages which are
 rendered through the flask framework. The database is based on SQLLite and will be moved over to ProstgreSQL when needed.
@@ -16,7 +13,7 @@ Each component part is broken down into a Blueprint to alow for more modular and
 
 #### Website
 
-[scubadivedubai-flask](https://scubadivedubaiflask.herokuapp.com/)
+[divesandybeach-flask](https://divesandybeach-flask.herokuapp.com/)
 
 #### Dummy User account
 
